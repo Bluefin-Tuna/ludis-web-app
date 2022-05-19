@@ -35,7 +35,7 @@ class FitnessProfile(BaseModel):
 
         for sport in v:
             if(sport not in OTHER_SPORTS):
-                raise ValueError("Invalid Indoor Sport preference.")
+                raise ValueError("Invalid Other Sport preference.")
             
         return v
 
