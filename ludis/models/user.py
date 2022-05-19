@@ -1,5 +1,5 @@
 from typing import Optional, List
-from pydantic import BaseModel, EmailStr, ValidationError, constr, validator
+from pydantic import BaseModel, EmailStr, constr, validator
 import datetime
 from ludis.core.constants import OUTDOOR_SPORTS, INDOOR_SPORTS, OTHER_SPORTS, ATHLETIC_ABILITY_RANGE
 import re
