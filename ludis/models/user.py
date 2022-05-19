@@ -89,6 +89,7 @@ class User(BaseModel):
     lastname: str
     password: constr(min_length=8, max_length=20)
     username: constr(max_length=15)
+    date_created: datetime.datetime = datetime.datetime.now()
 
     f_profile: Optional[FitnessProfile]
     su_profile: Optional[SupplementaryProfile]
