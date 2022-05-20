@@ -78,33 +78,38 @@
 #     }
 
 import pyrebase
+
 # import firebase_admin
 # from firebase_admin import credentials
 
-config = {
-  "apiKey": "AIzaSyDE0qn7eQH9NQy1AlHDXg1rsdFw6Z6RcKU",
-  "authDomain": "ludiswebapp.firebaseapp.com",
-  "projectId": "ludiswebapp",
-  "storageBucket": "ludiswebapp.appspot.com",
-  "messagingSenderId": "1060610658237",
-  "appId": "1:1060610658237:web:3fd927055703f383420cd4",
-  "measurementId": "G-02HN41C522"
-}
+# config = {
+#     "apiKey": "AIzaSyDE0qn7eQH9NQy1AlHDXg1rsdFw6Z6RcKU",
+#     "authDomain": "ludiswebapp.firebaseapp.com",
+#     "projectId": "ludiswebapp",
+#     "storageBucket": "ludiswebapp.appspot.com",
+#     "messagingSenderId": "1060610658237",
+#     "appId": "1:1060610658237:web:3fd927055703f383420cd4",
+#     "measurementId": "G-02HN41C522"
+# }
+from ludis.app import config
 
 firebase = pyrebase.initialize_app(config)
 auth = firebase.auth()
 
-# EMAIL AUTH
-def signup():
-  # redirect to signup page
-  try:
-    user = auth.create_user_with_email_and_password(email, password)
-  except:
-#     if duplicate email
 
-def login():
-#  redirect to login page
-  login = auth.sign_in_with_email_and_password(email, password)
+# EMAIL AUTH
+def signup(email, password):
+    # redirect to signup page
+    try:
+        user = auth.create_user_with_email_and_password(email, password)
+    except:
+        pass
+#     There is already a user with this email
+
+
+def login(email, password):
+    #  redirect to login page
+    login = auth.sign_in_with_email_and_password(email, password)
 
 # GOOGLE AUTH
 # cred = credentials.Certificate("path/to/serviceAccountKey.json")
