@@ -1,0 +1,56 @@
+body {
+  margin: 0;
+  font-family: 'Biryani', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: 'Biryani', source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+a {
+  text-decoration: none;
+  color: gray;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+.verticalCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.horizontalCenter {
+  margin: 0 auto;
+}
+
+.info {
+  width: 80vw;
+  margin: auto;
+  text-align: left;
+  font-size: 20px;
+}
+
+.grid-container {
+  display: grid;
+  grid-template-columns: auto auto auto;
+  padding: 10px;
+}
+
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+}
+
+.loginButton {
+  background: #888;
+  color: black;
+  cursor: default
+}
