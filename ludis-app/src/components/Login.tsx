@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect, useCallback } from 'react';
 import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
-
+import SignUp from './SignUp';
 import TextField from '@material-ui/core/TextField';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -9,6 +9,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
 import { FullscreenExit } from '@material-ui/icons';
 import { Modal } from './Modal.component';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 const logo = require('../logo.png');
 
@@ -152,71 +153,23 @@ const Login = () => {
     }
 
   const handleSignUp = () => {
-    // this.props.history.push('./components/SignUp')
+    return;
   }
-
+  function SignUpPage() {
+    return <SignUp />;
+  }
   const [isModalOpen, setModalState] = React.useState(false);
 
   const toggleModal = () => setModalState(!isModalOpen);
 
   return (
-    <form className={classes.container} noValidate autoComplete="off" style={{ display: 'flex' }}>
-      {/* <Card className={classes.card}>
+    <Router>
+      <form className={classes.container} noValidate autoComplete="off" style={{ display: 'flex' }}>
+        {/* <Card className={classes.card}>
         <CardHeader className={classes.header} title="Login App" /> */}
-      <div className="horizontalCenter">
-        <img alt='logo' style={{ width: 100 }} src={String(logo)} />
-      </div>
-      <CardContent>
-        <div>
-          <TextField
-            error={state.isError}
-            fullWidth
-            id="username"
-            type="email"
-            label="Username"
-            placeholder="Username"
-            margin="normal"
-            onChange={handleUsernameChange}
-            onKeyPress={handleKeyPress}
-          />
-          <TextField
-            error={state.isError}
-            fullWidth
-            id="password"
-            type="password"
-            label="Password"
-            placeholder="Password"
-            margin="normal"
-            helperText={state.helperText}
-            onChange={handlePasswordChange}
-            onKeyPress={handleKeyPress}
-          />
+        <div className="horizontalCenter">
+          <img alt='logo' style={{ width: 100 }} src={String(logo)} />
         </div>
-      </CardContent>
-      <CardContent style={{ fontSize: 12 }}>
-        <Button style={{ padding: 0, fontSize: 12, background: 'transparent', textTransform: 'none', textDecoration: 'none', color: 'gray' }} onClick={toggleModal} >
-          Don't have an account? Sign up
-        </Button>
-        <div style={{ height: 30 }}></div>
-        <a href="hardCodedSomething" >{"Forgot password"}</a>
-      </CardContent>
-      <CardActions style={{ marginLeft: "auto", paddingRight: "12%" }}>
-        <Button
-          variant="contained"
-          size="large"
-          color="secondary"
-          className={classes.loginBtn}
-          onClick={handleLogin}
-          style={{ boxShadow: 'none', background: 'lightgrey', color: 'black' }}>
-          Login
-        </Button>
-      </CardActions>
-      {/* </Card> */}
-      <Modal
-        title={'Sign up'}
-        isOpen={isModalOpen}
-        onClose={toggleModal}
-      >
         <CardContent>
           <div>
             <TextField
@@ -224,45 +177,10 @@ const Login = () => {
               fullWidth
               id="username"
               type="email"
-              label="First Name"
-              placeholder="First Name"
-              margin="normal"
-              onChange={handleUsernameChange}
-              onKeyPress={handleKeyPress}
-            />
-            <TextField
-              error={state.isError}
-              fullWidth
-              id="username"
-              type="email"
-              label="Last Name"
-              placeholder="Last Name"
-              margin="normal"
-              onChange={handleUsernameChange}
-              onKeyPress={handleKeyPress}
-            />
-            <TextField
-              error={state.isError}
-              fullWidth
-              id="password"
-              type="password"
-              label="Password"
+              label="Username"
               placeholder="Username"
               margin="normal"
-              helperText={state.helperText}
-              onChange={handlePasswordChange}
-              onKeyPress={handleKeyPress}
-            />
-            <TextField
-              error={state.isError}
-              fullWidth
-              id="password"
-              type="password"
-              label="Email"
-              placeholder="Email"
-              margin="normal"
-              helperText={state.helperText}
-              onChange={handlePasswordChange}
+              onChange={handleUsernameChange}
               onKeyPress={handleKeyPress}
             />
             <TextField
@@ -278,17 +196,118 @@ const Login = () => {
               onKeyPress={handleKeyPress}
             />
           </div>
-          <div style={{ justifyContent: 'center', display: 'flex' }}>
-            <Button
-              style={{ background: 'lightgrey', marginTop: 30, padding: 10 }}
-              onClick={history.push('./components/SignUp')}
-            >
-              Continue
-            </Button>
-          </div>
         </CardContent>
-      </Modal>
-    </form >
+        <CardContent style={{ fontSize: 12 }}>
+          <Button style={{ padding: 0, fontSize: 12, background: 'transparent', textTransform: 'none', textDecoration: 'none', color: 'gray' }} onClick={toggleModal} >
+            Don't have an account? Sign up
+          </Button>
+          <div style={{ height: 30 }}></div>
+          <a href="hardCodedSomething" >{"Forgot password"}</a>
+        </CardContent>
+        <CardActions style={{ marginLeft: "auto", paddingRight: "12%" }}>
+          <Button
+            variant="contained"
+            size="large"
+            color="secondary"
+            className={classes.loginBtn}
+            onClick={handleLogin}
+            style={{ boxShadow: 'none', background: 'lightgrey', color: 'black' }}>
+            Login
+          </Button>
+        </CardActions>
+        {/* </Card> */}
+        <Modal
+          title={'Sign up'}
+          isOpen={isModalOpen}
+          onClose={toggleModal}
+        >
+          <CardContent>
+            <div>
+              <TextField
+                error={state.isError}
+                fullWidth
+                id="username"
+                type="email"
+                label="First Name"
+                placeholder="First Name"
+                margin="normal"
+                onChange={handleUsernameChange}
+                onKeyPress={handleKeyPress}
+              />
+              <TextField
+                error={state.isError}
+                fullWidth
+                id="username"
+                type="email"
+                label="Last Name"
+                placeholder="Last Name"
+                margin="normal"
+                onChange={handleUsernameChange}
+                onKeyPress={handleKeyPress}
+              />
+              <TextField
+                error={state.isError}
+                fullWidth
+                id="username"
+                type="email"
+                label="Username"
+                placeholder="Username"
+                margin="normal"
+                onChange={handleUsernameChange}
+                onKeyPress={handleKeyPress}
+              />
+              <TextField
+                error={state.isError}
+                fullWidth
+                id="username"
+                type="email"
+                label="Email"
+                placeholder="Email"
+                margin="normal"
+                helperText={state.helperText}
+                onChange={handlePasswordChange}
+                onKeyPress={handleKeyPress}
+              />
+              <TextField
+                error={state.isError}
+                fullWidth
+                id="password"
+                type="password"
+                label="Password"
+                placeholder="Password"
+                margin="normal"
+                helperText={state.helperText}
+                onChange={handlePasswordChange}
+                onKeyPress={handleKeyPress}
+              />
+              <TextField
+                error={state.isError}
+                fullWidth
+                id="password"
+                type="password"
+                label="Confirm Password"
+                placeholder="Confirm Password"
+                margin="normal"
+                helperText={state.helperText}
+                onChange={handlePasswordChange}
+                onKeyPress={handleKeyPress}
+              />
+            </div>
+            <div style={{ justifyContent: 'center', display: 'flex' }}>
+              <Link to="/products/2">
+                <Button
+                  style={{ background: 'lightgrey', marginTop: 30, padding: 10 }}
+                  onClick={handleSignUp}
+                >
+                  Second ProductContinue
+                </Button>
+              </Link>
+            </div>
+          </CardContent>
+        </Modal>
+        <Route path="/signup" exact component={SignUpPage} />
+      </form >
+    </Router>
   );
 }
 

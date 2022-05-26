@@ -1,6 +1,6 @@
 import React from 'react';
 import Login from './components/Login';
-
+import SignUp from './components/SignUp';
 const App: React.FC = () => {
   return (
     <body>
@@ -33,6 +33,9 @@ const App: React.FC = () => {
           </div>
         </div>
       </section>
+      <div className="verticalCenter" style={{ height: '100vh' }}>
+        <SignUp />
+      </div>
     </body>
   )
 }

@@ -9,8 +9,6 @@ import CardHeader from '@material-ui/core/CardHeader';
 import Button from '@material-ui/core/Button';
 import { FullscreenExit } from '@material-ui/icons';
 import { Modal } from './Modal.component';
-import Dropdown from 'react-dropdown';
-import 'react-dropdown/style.css';
 
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
@@ -31,7 +29,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     card: {
       marginTop: theme.spacing(10)
-    }
+    },
   })
 );
 
@@ -155,12 +153,90 @@ const SignUp = () => {
     'one', 'two', 'three'
   ];
   const defaultOption = options[0];
-  <Dropdown options={options} onChange={this._onSelect} value={defaultOption} placeholder="Select an option" />;
   const logo = require('../logo.png');
 
   return (
     <section>
-      Sign Up!!!
+      <div>
+        <h1>Outdoor Sports</h1>
+        <select id='outdoorSports' style={{
+          borderRadius: 20,
+          width: 300,
+          height: 50,
+          fontSize: 20,
+          textIndent: 10
+        }}>
+          <option value="Soccer">Soccer</option>
+          <option value="Football">Football</option>
+          <option value="Basketball">Basketball</option>
+          <option value="Volleyball">Volleyball</option>
+          <option value="Basketball">Basketball</option>
+          <option value="Golf">Golf</option>
+          <option value="Tennis">Tennis</option>
+          <option value="Track">Track</option>
+          <option value="Baseball">Baseball</option>
+          <option value="Swimming">Swimming</option>
+          <option value="Skateboarding">Skateboarding</option>
+          <option value="Hiking">Hiking</option>
+          <option value="Ultimate Frisbee">Ultimate Frisbee</option>
+          <option value="Cross Country">Cross Country</option>
+          <option value="Surfing">Surfing</option>
+          <option value="Rock Climbing">Rock Climbing</option>
+        </select>
+      </div>
+      <div>
+        <h1>Indoor Sports</h1>
+        <select id='indoorSports' style={{
+          borderRadius: 20,
+          width: 300,
+          height: 50,
+          fontSize: 20,
+          textIndent: 10
+        }}>
+          <option value="Futsal">Futsal</option>
+          <option value="Bowling">Bowling</option>
+          <option value="Table Tennis">Table Tennis</option>
+          <option value="Badminton">Badminton</option>
+          <option value="Hockey">Hockey</option>
+          <option value="Ice Skating">Ice Skating</option>
+          <option value="Gymnastics">Gymnastics</option>
+          <option value="Weight Training">Weight Training</option>
+          <option value="Billiards">Billiards</option>
+          <option value="Darts">Darts</option>
+        </select>
+      </div>
+      <div>
+        <h1>Other</h1>
+        <select id='indoorSports' style={{
+          borderRadius: 20,
+          width: 300,
+          height: 50,
+          fontSize: 20,
+          textIndent: 10
+        }}>
+          <option value="Futsal">Futsal</option>
+          <option value="Bowling">Bowling</option>
+          <option value="Table Tennis">Table Tennis</option>
+          <option value="Badminton">Badminton</option>
+          <option value="Hockey">Hockey</option>
+        </select>
+      </div>
+      <div>
+        <h1>Rating</h1>
+        <select id='indoorSports' style={{
+          borderRadius: 20,
+          width: 300,
+          height: 50,
+          fontSize: 20,
+          textIndent: 10
+        }}>
+          <option value="One">One</option>
+          <option value="Two">Two</option>
+          <option value="Three">Three</option>
+          <option value="Four">Four</option>
+          <option value="Five">Five</option>
+        </select>
+      </div>
     </section>
   );
 }

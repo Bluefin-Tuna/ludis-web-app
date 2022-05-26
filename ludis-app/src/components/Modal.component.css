@@ -49,10 +49,6 @@
   transform-origin: 50% 50%;
 }
 
-.modal__close:hover {
-  transform: rotate(180deg);
-}
-
 @media screen and (min-width: 800px) {
   .modal__box {
     max-width: 600px;
