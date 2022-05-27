@@ -1,0 +1,9 @@
+name: ludis-web-app
+channels:
+  - defaults
+dependencies:
+  - python=3.9
+  - pycryptodome
+  - flask
+  - authlib
+prefix: C:\Users\mohsi\anaconda3\envs\ludis-web-app

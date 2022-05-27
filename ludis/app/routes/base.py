@@ -1,4 +1,4 @@
-from flask import Blueprint, abort
+rom flask import Blueprint, abort
 
 base = Blueprint("base", __name__)
 
