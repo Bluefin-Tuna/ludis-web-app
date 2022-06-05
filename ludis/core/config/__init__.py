@@ -1,4 +1,3 @@
-
 class BasicConfig():
 
     """Base config for staging database."""
