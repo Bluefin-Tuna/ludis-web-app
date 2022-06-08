@@ -123,8 +123,8 @@ AUTHORIZATION_URL = 'https://accounts.google.com/o/oauth2/v2/auth?access_type=of
 
 AUTHORIZATION_SCOPE = 'openid email profile'
 
-# AUTH_REDIRECT_URI = os.environ.get("FN_AUTH_REDIRECT_URI", default=False)
-# BASE_URI = os.environ.get("FN_BASE_URI", default=False)
+AUTH_REDIRECT_URI = os.environ.get("http://localhost:8040/google/auth", default=False)    #comment this
+BASE_URI = os.environ.get("FN_BASE_URI", default=False)                      #comment this
 CLIENT_ID = os.environ.get("313919470376-dhl9qq87macvamgif9fjjnba21cmogva.apps.googleusercontent.com", default=False)
 CLIENT_SECRET = os.environ.get("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", default=False)
 
@@ -179,7 +179,7 @@ def no_cache(view):
 def login():
     session = OAuth2Session("313919470376-dhl9qq87macvamgif9fjjnba21cmogva.apps.googleusercontent.com", "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",
                             scope=AUTHORIZATION_SCOPE,
-                            redirect_uri=AUTH_REDIRECT_URI)
+                            redirect_uri="http://localhost:8040/google/auth")
 
     uri, state = session.authorization_url(AUTHORIZATION_URL)
 
@@ -198,10 +198,10 @@ def google_auth_redirect():
         response = flask.make_response('Invalid state parameter', 401)
         return response
 
-    session = OAuth2Session(CLIENT_ID, CLIENT_SECRET,
+    session = OAuth2Session("313919470376-dhl9qq87macvamgif9fjjnba21cmogva.apps.googleusercontent.com", "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",
                             scope=AUTHORIZATION_SCOPE,
                             state=flask.session[AUTH_STATE_KEY],
-                            redirect_uri=AUTH_REDIRECT_URI)
+                            redirect_uri="http://localhost:8040/google/auth")
 
     oauth2_tokens = session.fetch_access_token(
         ACCESS_TOKEN_URI,
