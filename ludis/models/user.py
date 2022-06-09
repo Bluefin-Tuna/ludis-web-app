@@ -105,5 +105,3 @@ class User(BaseModel):
         raise ValueError("Invalid password.")
     
     # @validator("username")
-
-print(datetime.datetime.now())
