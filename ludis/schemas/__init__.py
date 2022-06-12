@@ -1,7 +1,33 @@
 from enum import unique
-from flask_sqlalchemy import SQLAlchemy
+from ludis.db import db
 
-db = SQLAlchemy()
+
+class UserEventAssociation(db.Model):
+    
+    __tablename__ = "users_events"
+
+    user = db.Column(db.Integer, db.ForeignKey("users.id"), primary_key = True)
+    event = db.Column(db.Integer, db.ForeignKey("events.id"), primary_key = True)
+
+    joined_on = db.Column(db.DateTime)
+
+class UserGroupAssociation(db.Model):
+
+    __tablename__ = "users_groups"
+
+    user = db.Column(db.Integer, db.ForeignKey("users.id"), primary_key = True)
+    group = db.Column(db.Integer, db.ForeignKey("users.id"), primary_key = True)
+
+    nickname = db.Column(db.String(255))
+    num_texts = db.Column(db.Integer)
+
+    joined_on = db.Column(db.DateTime)
+
+locations_activities = db.Table(
+    "locations",
+    db.Column("location", db.Integer, db.ForeignKey("locations.id"), primary_key = True),
+    db.Column("activity", db.Integer, db.ForeignKey("activities.id"), primary_key = True)
+)
 
 class Users(db.Model):
 
@@ -15,7 +41,10 @@ class Users(db.Model):
     first_name = db.Column(db.String(255), unique = False, nullable = False)
     last_name = db.Column(db.String(255), unique = False, nullable = False)
 
-    fp = db.relationship('Profiles', backref = 'users', uselist = False)
+    events_created = db.relationship("Events", backref = "users")
+    requests_created = db.relationship("Relationships", backref = "users")
+    requests_received = db.relationship("Relationships", backref = "users")
+    profile = db.relationship('Profiles', backref = 'users', uselist = False)
 
     created_at = db.Column(db.DateTime)
     updated_at = db.Column(db.DateTime)
@@ -40,7 +69,7 @@ class Preferences(db.Model):
     __tablename__ = "preferences"
 
     id = db.Column(db.Integer, primary_key = True)
-    fp = db.Column(db.Integer, db.ForeignKey("profiles.id"))
+    profile = db.Column(db.Integer, db.ForeignKey("profiles.id"))
     
     level = db.Column(db.Integer)
     user_popularity = db.Column(db.Integer)
@@ -75,12 +104,34 @@ class Events(db.Model):
 
     id = db.Column(db.Integer, primary_key = True)
     location = db.Column(db.Integer, db.ForeignKey("locations.id", nullable = False))
+    author = db.Column(db.Integer, db.ForeignKey("users.id", nullable = False))
 
-    chat_log = db.Column(db.String(255), unique = True)
-
+    chat = db.Column(db.String(255), unique = True)
 
     created_at = db.Column(db.DateTime)
     starts_at = db.Column(db.DateTime)
     ends_at = db.Column(db.DateTime)
 
+class Relationships(db.Model):
 
+    __tablename__ = "relationships"
+
+    id = db.Column(db.Integer, primary_key = True)
+    requester = db.Column(db.Integer, db.ForeignKey("users.id"))
+    addressee = db.Column(db.Integer, db.ForeignKey("users.id"))
+
+    status = db.Column(db.Integer)
+
+    created_at = db.Column(db.DateTime)
+    updated_at = db.Column(db.DateTime)
+
+class Groups(db.Model):
+
+    __tablename__ = "groups"
+
+    id = db.Column(db.Integer, primary_key = True)
+
+    chat = db.Column(db.String(255))
+
+    created_at = db.Column(db.DateTime)
+    last_used = db.Column(db.DateTime)
