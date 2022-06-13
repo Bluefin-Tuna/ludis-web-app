@@ -11,6 +11,8 @@ class UserEventAssociation(db.Model):
 
     joined_on = db.Column(db.DateTime, default = datetime.utcnow)
 
+    def __repr__(self) -> str:
+        return f"<UserEvent: {self.user}, {self.event}>"
 
 class UserGroupAssociation(db.Model):
 
@@ -24,8 +26,10 @@ class UserGroupAssociation(db.Model):
 
     joined_on = db.Column(db.DateTime, default = datetime.utcnow)
 
-locations_activities = db.Table(
-    "locations",
+    def __repr__(self) -> str:
+        return f"<UserGroup: {self.user}, {self.group}>"
+
+locations_activities = db.Table("locations_activities",
     db.Column("location", db.Integer, db.ForeignKey("locations.id"), primary_key = True),
     db.Column("activity", db.Integer, db.ForeignKey("activities.id"), primary_key = True)
 )
@@ -50,6 +54,9 @@ class Users(db.Model):
     created_at = db.Column(db.DateTime, default = datetime.utcnow)
     updated_at = db.Column(db.DateTime, default = datetime.utcnow)
 
+    def __repr__(self) -> str:
+        return f"<User {self.id}>"
+
 class Profiles(db.Model):
 
     __tablename__ = "profiles"
@@ -65,6 +72,9 @@ class Profiles(db.Model):
     
     updated_at = db.Column(db.DateTime, default = datetime.utcnow)
 
+    def __repr__(self) -> str:
+        return f"<Profile {self.id}>"
+
 class Preferences(db.Model):
 
     __tablename__ = "preferences"
@@ -77,6 +87,9 @@ class Preferences(db.Model):
 
     activity = db.relationship("Activities", backref = "preferences", lazy = True)
 
+    def __repr__(self) -> str:
+        return f"<Preference {self.id}>"
+
 class Activities(db.Model):
 
     __tablename__ = "activities"
@@ -88,6 +101,9 @@ class Activities(db.Model):
     description = db.Column(db.String(255))
     popularity = db.Column(db.Integer)
 
+    def __repr__(self) -> str:
+        return f"<Activity {self.id}>"
+
 class Locations(db.Model):
 
     __tablename__ = "locations"
@@ -98,6 +114,9 @@ class Locations(db.Model):
     geo_location = db.Column(db.String(255))
 
     events = db.relationship("Events", backref='locations', lazy = True)
+
+    def __repr__(self) -> str:
+        return f"<Location {self.id}>"
 
 class Events(db.Model):
 
@@ -113,6 +132,9 @@ class Events(db.Model):
     starts_at = db.Column(db.DateTime)
     ends_at = db.Column(db.DateTime)
 
+    def __repr__(self) -> str:
+        return f"<Event {self.id}>"
+
 class Relationships(db.Model):
 
     __tablename__ = "relationships"
@@ -126,6 +148,9 @@ class Relationships(db.Model):
     created_at = db.Column(db.DateTime, default = datetime.utcnow)
     updated_at = db.Column(db.DateTime, default = datetime.utcnow)
 
+    def __repr__(self) -> str:
+        return f"<Relationship {self.id}>"
+
 class Groups(db.Model):
 
     __tablename__ = "groups"
@@ -136,3 +161,6 @@ class Groups(db.Model):
 
     created_at = db.Column(db.DateTime, default = datetime.utcnow)
     last_used = db.Column(db.DateTime, default = datetime.utcnow)
+
+    def __repr__(self) -> str:
+        return f"<Group {self.id}>"
