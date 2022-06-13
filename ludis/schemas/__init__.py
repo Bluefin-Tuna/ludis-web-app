@@ -1,6 +1,6 @@
 from enum import unique
 from ludis.db import db
-
+from datetime import datetime
 
 class UserEventAssociation(db.Model):
     
@@ -9,7 +9,8 @@ class UserEventAssociation(db.Model):
     user = db.Column(db.Integer, db.ForeignKey("users.id"), primary_key = True)
     event = db.Column(db.Integer, db.ForeignKey("events.id"), primary_key = True)
 
-    joined_on = db.Column(db.DateTime)
+    joined_on = db.Column(db.DateTime, default = datetime.utcnow)
+
 
 class UserGroupAssociation(db.Model):
 
@@ -21,7 +22,7 @@ class UserGroupAssociation(db.Model):
     nickname = db.Column(db.String(255))
     num_texts = db.Column(db.Integer)
 
-    joined_on = db.Column(db.DateTime)
+    joined_on = db.Column(db.DateTime, default = datetime.utcnow)
 
 locations_activities = db.Table(
     "locations",
@@ -46,8 +47,8 @@ class Users(db.Model):
     requests_received = db.relationship("Relationships", backref = "users")
     profile = db.relationship('Profiles', backref = 'users', uselist = False)
 
-    created_at = db.Column(db.DateTime)
-    updated_at = db.Column(db.DateTime)
+    created_at = db.Column(db.DateTime, default = datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default = datetime.utcnow)
 
 class Profiles(db.Model):
 
@@ -62,7 +63,7 @@ class Profiles(db.Model):
 
     preferences = db.relationship("Preferences", backref='profiles', lazy = True)
     
-    updated_at = db.Column(db.DateTime)
+    updated_at = db.Column(db.DateTime, default = datetime.utcnow)
 
 class Preferences(db.Model):
 
@@ -108,7 +109,7 @@ class Events(db.Model):
 
     chat = db.Column(db.String(255), unique = True)
 
-    created_at = db.Column(db.DateTime)
+    created_at = db.Column(db.DateTime, default = datetime.utcnow)
     starts_at = db.Column(db.DateTime)
     ends_at = db.Column(db.DateTime)
 
@@ -122,8 +123,8 @@ class Relationships(db.Model):
 
     status = db.Column(db.Integer)
 
-    created_at = db.Column(db.DateTime)
-    updated_at = db.Column(db.DateTime)
+    created_at = db.Column(db.DateTime, default = datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default = datetime.utcnow)
 
 class Groups(db.Model):
 
@@ -133,5 +134,5 @@ class Groups(db.Model):
 
     chat = db.Column(db.String(255))
 
-    created_at = db.Column(db.DateTime)
-    last_used = db.Column(db.DateTime)
+    created_at = db.Column(db.DateTime, default = datetime.utcnow)
+    last_used = db.Column(db.DateTime, default = datetime.utcnow)
