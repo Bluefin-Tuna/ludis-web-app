@@ -80,15 +80,15 @@ class SupplementaryProfile(BaseModel):
 
 class User(BaseModel):
 
-    is_google: bool = False
-    is_facebook: bool = False
-    is_twitter: bool = False
+    # is_google: bool = False
+    # is_facebook: bool = False
+    # is_twitter: bool = False
 
     email: EmailStr
-    firstname: str
-    lastname: str
+    first_name: str
+    last_name: str
     password: constr(min_length=8, max_length=20)
-    username: constr(max_length=15)
+    username: Optional[constr(max_length=15)]
     date_created: datetime.datetime = datetime.datetime.now()
 
     f_profile: Optional[FitnessProfile]
@@ -105,3 +105,4 @@ class User(BaseModel):
         raise ValueError("Invalid password.")
     
     # @validator("username")
+    
