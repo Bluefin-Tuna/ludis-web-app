@@ -1,6 +1,8 @@
 from enum import unique
-from ludis.db import db
 from datetime import datetime
+from flask_sqlalchemy import SQLAlchemy
+
+db = SQLAlchemy()
 
 class UserEventAssociation(db.Model):
     
@@ -8,6 +10,9 @@ class UserEventAssociation(db.Model):
 
     user = db.Column(db.Integer, db.ForeignKey("users.id"), primary_key = True)
     event = db.Column(db.Integer, db.ForeignKey("events.id"), primary_key = True)
+
+    users = db.relationship("Users", back_populates = "events")
+    events = db.relationship("Events", back_populates = "users")
 
     joined_on = db.Column(db.DateTime, default = datetime.utcnow)
 
@@ -24,14 +29,21 @@ class UserGroupAssociation(db.Model):
     nickname = db.Column(db.String(255))
     num_texts = db.Column(db.Integer)
 
+    users = db.relationship("Users", back_populates = "groups")
+    groups = db.relationship("Groups", back_populates = "users")
+
     joined_on = db.Column(db.DateTime, default = datetime.utcnow)
 
     def __repr__(self) -> str:
         return f"<UserGroup: {self.user}, {self.group}>"
 
-locations_activities = db.Table("locations_activities",
+locations_activities = db.Table(
+    
+    "locations_activities",
+
     db.Column("location", db.Integer, db.ForeignKey("locations.id"), primary_key = True),
     db.Column("activity", db.Integer, db.ForeignKey("activities.id"), primary_key = True)
+
 )
 
 class Users(db.Model):
@@ -47,8 +59,10 @@ class Users(db.Model):
     last_name = db.Column(db.String(255), unique = False, nullable = False)
 
     events_created = db.relationship("Events", backref = "users")
+    events_joined = db.relationship("UserEventAssociation", back_populates = "users")
     requests_created = db.relationship("Relationships", backref = "users")
     requests_received = db.relationship("Relationships", backref = "users")
+    groups_joined = db.relationship("UserGroupAssociation", back_populates = "users")
     profile = db.relationship('Profiles', backref = 'users', uselist = False)
 
     created_at = db.Column(db.DateTime, default = datetime.utcnow)
@@ -101,6 +115,8 @@ class Activities(db.Model):
     description = db.Column(db.String(255))
     popularity = db.Column(db.Integer)
 
+    locations = db.relationship("Locations", secondary = locations_activities, backref = "activities")
+
     def __repr__(self) -> str:
         return f"<Activity {self.id}>"
 
@@ -127,6 +143,8 @@ class Events(db.Model):
     author = db.Column(db.Integer, db.ForeignKey("users.id", nullable = False))
 
     chat = db.Column(db.String(255), unique = True)
+
+    participants = db.relationship("UserEventAssociation", back_populates = "events")
 
     created_at = db.Column(db.DateTime, default = datetime.utcnow)
     starts_at = db.Column(db.DateTime)
@@ -158,6 +176,8 @@ class Groups(db.Model):
     id = db.Column(db.Integer, primary_key = True)
 
     chat = db.Column(db.String(255))
+
+    users = db.relationship("UserGroupAssociation", back_populates = "groups")
 
     created_at = db.Column(db.DateTime, default = datetime.utcnow)
     last_used = db.Column(db.DateTime, default = datetime.utcnow)
