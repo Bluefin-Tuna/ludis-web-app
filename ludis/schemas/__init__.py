@@ -27,7 +27,7 @@ class UserGroupAssociation(db.Model):
     group = db.Column(db.Integer, db.ForeignKey("users.id"), primary_key = True)
 
     nickname = db.Column(db.String(255))
-    num_texts = db.Column(db.Integer)
+    num_texts = db.Column(db.Integer, default = 0)
 
     users = db.relationship("Users", back_populates = "groups")
     groups = db.relationship("Groups", back_populates = "users")
@@ -58,12 +58,12 @@ class Users(db.Model):
     first_name = db.Column(db.String(255), unique = False, nullable = False)
     last_name = db.Column(db.String(255), unique = False, nullable = False)
 
-    events_created = db.relationship("Events", backref = "users")
+    events_created = db.relationship("Events", backref = "user")
     events_joined = db.relationship("UserEventAssociation", back_populates = "users")
-    requests_created = db.relationship("Relationships", backref = "users")
-    requests_received = db.relationship("Relationships", backref = "users")
+    requests_created = db.relationship("Relationships", backref = "user")
+    requests_received = db.relationship("Relationships", backref = "user")
     groups_joined = db.relationship("UserGroupAssociation", back_populates = "users")
-    profile = db.relationship('Profiles', backref = 'users', uselist = False)
+    profile = db.relationship('Profiles', backref = 'user', uselist = False)
 
     created_at = db.Column(db.DateTime, default = datetime.utcnow)
     updated_at = db.Column(db.DateTime, default = datetime.utcnow)
@@ -78,11 +78,13 @@ class Profiles(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     user = db.Column(db.Integer, db.ForeignKey('users.id'), unique = True)
 
-    gender = db.Column(db.Integer)
-    weight = db.Column(db.Integer)
-    description = db.Column(db.String(200))
+    fitness_level = db.Column(db.Integer, default = 5)
+    gender = db.Column(db.Integer, default = -1)
+    weight = db.Column(db.Integer, default = -1)
+    description = db.Column(db.Text, default = "")
+    phone_number = db.Column(db.String(20), unique = True)
 
-    preferences = db.relationship("Preferences", backref='profiles', lazy = True)
+    preferences = db.relationship("Preferences", backref='profile', lazy = True)
     
     updated_at = db.Column(db.DateTime, default = datetime.utcnow)
 
@@ -96,10 +98,10 @@ class Preferences(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     profile = db.Column(db.Integer, db.ForeignKey("profiles.id"))
     
-    level = db.Column(db.Integer)
-    user_popularity = db.Column(db.Integer)
+    experience_level = db.Column(db.Integer, default = 5)
+    user_popularity = db.Column(db.Integer, default = 0)
 
-    activity = db.relationship("Activities", backref = "preferences", lazy = True)
+    activity = db.relationship("Activities", backref = "preference", lazy = True)
 
     def __repr__(self) -> str:
         return f"<Preference {self.id}>"
@@ -110,10 +112,10 @@ class Activities(db.Model):
 
     id = db.Column(db.Integer, primary_key = True)
 
-    attribute = db.Column(db.Integer)
-    name = db.Column(db.String(50))
+    attribute = db.Column(db.Integer, nullable = False)
+    name = db.Column(db.String(50), nullable = False, unique = True)
     description = db.Column(db.String(255))
-    popularity = db.Column(db.Integer)
+    popularity = db.Column(db.Integer, default = 0)
 
     locations = db.relationship("Locations", secondary = locations_activities, backref = "activities")
 
@@ -126,10 +128,10 @@ class Locations(db.Model):
 
     id = db.Column(db.Integer, primary_key = True)
 
-    name = db.Column(db.String())
+    name = db.Column(db.String(255))
     geo_location = db.Column(db.String(255))
 
-    events = db.relationship("Events", backref='locations', lazy = True)
+    events = db.relationship("Events", backref='location', lazy = True)
 
     def __repr__(self) -> str:
         return f"<Location {self.id}>"
@@ -139,16 +141,17 @@ class Events(db.Model):
     __tablename__ = "events"
 
     id = db.Column(db.Integer, primary_key = True)
-    location = db.Column(db.Integer, db.ForeignKey("locations.id", nullable = False))
-    author = db.Column(db.Integer, db.ForeignKey("users.id", nullable = False))
+    location = db.Column(db.Integer, db.ForeignKey("locations.id"))
+    author = db.Column(db.Integer, db.ForeignKey("users.id"))
 
     chat = db.Column(db.String(255), unique = True)
+    recurring = db.Column(db.Boolean, default = False)
 
     participants = db.relationship("UserEventAssociation", back_populates = "events")
 
     created_at = db.Column(db.DateTime, default = datetime.utcnow)
-    starts_at = db.Column(db.DateTime)
-    ends_at = db.Column(db.DateTime)
+    starts_at = db.Column(db.DateTime, nullable = False)
+    ends_at = db.Column(db.DateTime, nullable = False)
 
     def __repr__(self) -> str:
         return f"<Event {self.id}>"
@@ -161,7 +164,7 @@ class Relationships(db.Model):
     requester = db.Column(db.Integer, db.ForeignKey("users.id"))
     addressee = db.Column(db.Integer, db.ForeignKey("users.id"))
 
-    status = db.Column(db.Integer)
+    status = db.Column(db.Integer, default = 0) # Status Codes --> (0: Requested), (1: Accepted), (2: Declined)
 
     created_at = db.Column(db.DateTime, default = datetime.utcnow)
     updated_at = db.Column(db.DateTime, default = datetime.utcnow)
