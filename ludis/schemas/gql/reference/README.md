@@ -1,0 +1,1 @@
+This is for reference only. These schema files will not be used as material for GraphQL endpoints.
