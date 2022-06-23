@@ -5,8 +5,8 @@ class UserEventAssociation(db.Model):
     
     __tablename__ = "users_events"
 
-    user = db.Column(db.Integer, db.ForeignKey("users.id"), primary_key = True)
-    event = db.Column(db.Integer, db.ForeignKey("events.id"), primary_key = True)
+    user = db.Column(db.Integer, db.ForeignKey("users.id", ondelete = "CASCADE"), primary_key = True)
+    event = db.Column(db.Integer, db.ForeignKey("events.id", ondelete = "CASCADE"), primary_key = True)
 
     users = db.relationship("Users", back_populates = "events")
     events = db.relationship("Events", back_populates = "users")
@@ -20,8 +20,8 @@ class UserGroupAssociation(db.Model):
 
     __tablename__ = "users_groups"
 
-    user = db.Column(db.Integer, db.ForeignKey("users.id"), primary_key = True)
-    group = db.Column(db.Integer, db.ForeignKey("users.id"), primary_key = True)
+    user = db.Column(db.Integer, db.ForeignKey("users.id", ondelete = "CASCADE"), primary_key = True)
+    group = db.Column(db.Integer, db.ForeignKey("users.id", ondelete = "CASCADE"), primary_key = True)
 
     nickname = db.Column(db.String(255))
     num_texts = db.Column(db.Integer, default = 0)
@@ -38,7 +38,7 @@ locations_activities = db.Table(
     
     "locations_activities",
 
-    db.Column("location", db.Integer, db.ForeignKey("locations.id"), primary_key = True),
-    db.Column("activity", db.Integer, db.ForeignKey("activities.id"), primary_key = True)
+    db.Column("location", db.Integer, db.ForeignKey("locations.id", ondelete = "CASCADE"), primary_key = True),
+    db.Column("activity", db.Integer, db.ForeignKey("activities.id", ondelete = "CASCADE"), primary_key = True)
 
 )

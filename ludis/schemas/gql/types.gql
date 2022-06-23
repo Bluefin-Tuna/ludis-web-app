@@ -5,8 +5,7 @@ type Activity {
     attribute: Integer!
     name: String!
     description: String!
-    popularity: String!
-    preferences: [Preference] @relation
+    preferences: [Preference!]
 
 }
 
@@ -94,11 +93,10 @@ type User {
 
     user: String!
     email: String!
-    firstName: String!
-    lastName: String!
+    name: String!
 
-    eventsCreated: [Event] @relation
-    eventsJoined: [Event] @relation
+    eventsCreated: [Event!]
+    eventsJoined: [Event!]
     friendRequestsCreated: [Relationship] @relation
     friendRequestsRecieved: [Relationship] @relation
     groupsJoined: [Group] @relation
