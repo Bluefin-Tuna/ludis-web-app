@@ -16,7 +16,6 @@ type Group {
     chat: String!
     users: [User!] @relation
 
-    createdAt: DateTime!
     lastUsed: DateTime!
 
 }
@@ -29,18 +28,14 @@ type Relationship {
     addressee: User!
     status: Integer!
 
-    createdAt: DateTime!
-    updatedAt: DateTime!
-
 }
 
 type Event {
 
     id: ID!
 
-    location: Location!
-    author: User!
-    chat: String!
+    location: Location
+    author: User
     recurring: Boolean!
     participants: [User!] @relation
 
@@ -55,7 +50,7 @@ type Location {
     id: ID!
 
     name: String!
-    geographicLocation: String!
+    geographicLocation: GeoLocation!
     events: [Event!] @relation
 
 }
@@ -67,7 +62,6 @@ type Preference {
     profile: Profile!
     activity: Activity!
     experience: Integer!
-    popularity: Integer!
 
 }
 
@@ -81,7 +75,7 @@ type Profile {
     weight: Integer!
     description: String!
     phoneNumber: String!
-    preferences: [Preference] @relation
+    preferences: [Preference!] @relation
 
     updatedAt: DateTime!
 
@@ -91,15 +85,15 @@ type User {
 
     id: ID!
 
-    user: String!
+    username: String!
     email: String!
     name: String!
 
     eventsCreated: [Event!]
     eventsJoined: [Event!]
-    friendRequestsCreated: [Relationship] @relation
-    friendRequestsRecieved: [Relationship] @relation
-    groupsJoined: [Group] @relation
+    friendRequestsCreated: [Relationship!] @relation
+    friendRequestsRecieved: [Relationship!] @relation
+    groupsJoined: [Group!] @relation
     profile: Profile!
     
     createdAt: DateTime!
