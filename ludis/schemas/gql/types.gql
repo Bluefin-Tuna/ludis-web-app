@@ -79,8 +79,6 @@ type Profile {
     phoneNumber: String!
     preferences: [Preference!]
 
-    updatedAt: DateTime!
-
 }
 
 type User {
@@ -97,8 +95,5 @@ type User {
     friendRequestsRecieved: [Relationship!] 
     groupsJoined: [Group!]
     profile: Profile!
-    
-    createdAt: DateTime!
-    updatedAt: DateTime!
 
 }
