@@ -56,5 +56,48 @@ type LocationResult {
 
 type EventsResult {
     
+    success: Boolean!
+    errors: [String]
+    events: [Event]
+
 }
 
+type EventResult {
+
+    success: Boolean!
+    errors: [String]
+    event: Event
+
+}
+
+type RelationshipsResult {
+
+    success: Boolean!
+    errors: [String]
+    relationships: [Relationship]
+
+}
+
+type RelationshipResult {
+
+    success: Boolean!
+    errors: [String]
+    relationship: Relationship
+
+}
+
+type GroupsResult {
+
+    success: Boolean!
+    errors: [String]
+    groups: [Group]
+
+}
+
+type GroupResult {
+
+    success: Boolean!
+    errors: [String]
+    group: Group
+
+}
