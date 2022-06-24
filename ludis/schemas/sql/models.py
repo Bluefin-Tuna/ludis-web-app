@@ -76,6 +76,7 @@ class Activities(db.Model):
 
     preferences = db.relationship("Preferences", backref = "activity", lazy = True, passive_deletes = True)
     locations = db.relationship("Locations", secondary = locations_activities, backref = db.backref("activities", passive_deletes = True))
+    events = db.relationship("Events", backref = "activity", lazy = True, passive_deletes = True)
 
     def __repr__(self) -> str:
         return f"<Activity {self.id}>"
@@ -102,8 +103,9 @@ class Events(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     location = db.Column(db.Integer, db.ForeignKey("locations.id", ondelete = "SET NULL"), nullable = True)
     author = db.Column(db.Integer, db.ForeignKey("users.id", ondelete = "SET NULL"), nullable = True)
+    activity = db.Column(db.Integer, db.ForeignKey("activities.id", ondelete = "SET NULL"), nullable = True)
 
-    chat = db.Column(db.String(255), unique = True)
+    chat = db.Column(db.String(255), unique = True, nullable = False)
     recurring = db.Column(db.Boolean, default = False)
 
     participants = db.relationship("UserEventAssociation", back_populates = "events", passive_deletes = True)

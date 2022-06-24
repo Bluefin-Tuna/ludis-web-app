@@ -1,0 +1,60 @@
+type UsersResult {
+
+    success: Boolean!
+    errors: [String]
+    users: [User]
+
+}
+
+type UserResult {
+
+    success: Boolean!
+    errors: [String]
+    user: User
+
+}
+
+type ProfileResult {
+
+    success: Boolean!
+    errors: [String]
+    profile: Profile
+
+}
+
+type PreferencesResult {
+
+    success: Boolean!
+    errors: [String]
+    preferences: [Preference]
+
+}
+
+type PreferenceResult {
+
+    success: Boolean!
+    errors: [String]
+    preference: Preference
+
+}
+
+type LocationsResult {
+
+    success: Boolean!
+    errors: [String]
+    locations: [Location]
+
+}
+
+type LocationResult {
+
+    success: Boolean!
+    errors: [String]
+    location: Location
+
+}
+
+type EventsResult {
+    
+}
+
