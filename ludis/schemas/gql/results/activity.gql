@@ -1,0 +1,36 @@
+type ActivitiesResult {
+
+    success: Boolean!
+    errors: [String]
+    activities: [Activity]
+
+}
+
+type ActivityResult {
+
+    success: Boolean!
+    errors: [String]
+    activities: Activity
+
+}
+
+type ActivityCreationResult {
+
+    success: Boolean!
+    errors: [String]
+
+}
+
+type ActivityModificationResult {
+
+    success: Boolean!
+    errors: [String]
+
+}
+
+type ActivityDeletionResult {
+
+    success: Boolean!
+    errors: [String]
+
+}

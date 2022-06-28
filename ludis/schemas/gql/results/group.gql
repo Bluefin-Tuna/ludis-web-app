@@ -1,0 +1,36 @@
+type GroupsResult {
+
+    success: Boolean!
+    errors: [String]
+    groups: [Group]
+
+}
+
+type GroupResult {
+
+    success: Boolean!
+    errors: [String]
+    group: Group
+
+}
+
+type GroupCreationResult {
+
+    success: Boolean!
+    errors: [String]
+
+}
+
+type GroupModificationResult {
+
+    success: Boolean!
+    errors: [String]
+
+}
+
+type GroupDeletionResult {
+
+    success: Boolean!
+    errors: [String]
+
+}

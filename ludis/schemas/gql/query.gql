@@ -1,0 +1,73 @@
+type Query {}
+
+extend type Query {
+        
+    getUsers: UsersResult!
+    getUsers(users: [ID!]!): UsersResult!
+
+    getUser(id: ID!): UserResult!
+    getUser(email: String!): UserResult!
+    getUser(username: String!): UserResult!
+
+}
+
+extend type Query {
+
+    getProfile(id: ID!): ProfileResult!
+    getProfile(userID: ID!): ProfileResult!
+
+}
+
+extend type Query {
+
+    getPreferences(profileID: ID!): PreferencesResult!
+    getPreferences(preferences: [ID!]!): PreferencesResult!
+
+    getPreference(id: ID!): PreferenceResult!
+
+}
+
+extend type Query {
+
+    getLocations: LocationsResult!
+    getLocations(activities: [ID!]!): LocationsResult!
+    getLocations(activity: ID!): LocationsResult!
+    getLocations(events: [ID!]!): LocationsResult!
+    getLocations(locations: [ID!]!): LocationsResult!
+
+    getLocation(id: ID!): LocationResult!
+    getLocation(eventID: ID!): LocationResult!
+
+}
+
+extend type Query {
+
+    getEvents: EventsResult!
+    getEvents(events: [ID!]!): EventsResult!
+    getEvents(activities: [ID!]!): EventsResult!
+    getEvents(activity: ID!): EventResult!
+    getEvents(author: ID!): EventsResult!
+
+    getEvent(id: ID!): EventResult!
+
+}
+
+extend type Query {
+
+    getFriendRequests(requester: ID!): RelationshipsResult! 
+    getFriendRequests(recipient: ID!): RelationshipsResult
+    getFriends(requester: ID!): RelationshipsResult!
+    getFriends(recipient: ID!): RelationshipsResult!
+    getRelationships(requester: ID!): RelationshipsResult!
+    getRelationships(recipient: ID!): RelationshipsResult!
+
+}
+
+extend type Query {
+
+    getGroups(groups: [ID!]!): GroupsResult!
+    getGroups(user: ID!): GroupsResult!
+
+    getGroup(id: ID!): Group!
+
+}

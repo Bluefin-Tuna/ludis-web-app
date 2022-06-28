@@ -1,0 +1,11 @@
+input createProfile {
+    userID: ID!
+
+    fitnessLevel: Integer
+    gender: Integer
+    weight: Integer
+    description: String
+    phoneNumber: String
+
+    activities: []
+}

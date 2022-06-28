@@ -1,0 +1,20 @@
+type ProfileResult {
+
+    success: Boolean!
+    errors: [String]
+    profile: Profile
+
+}
+
+type ProfileCreationResult {
+
+    success: Boolean!
+    errors: [String]
+}
+
+type ProfileModificationResult {
+
+    success: Boolean!
+    errors: [String]
+
+}

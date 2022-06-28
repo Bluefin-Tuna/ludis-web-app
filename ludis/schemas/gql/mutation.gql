@@ -1,0 +1,29 @@
+type Mutation {}
+
+extend type Mutation {
+
+    createUser(input: createUserInput!): UserCreationResult!
+
+    updateUserInformation(input: updateUserInput!): UserModificationResult!
+    updatePassword(input: updatePasswordInput!): UserModificationResult!
+
+    deleteUser(input: deleteUserInput!): UserDeletionResult!
+
+}
+
+extend type Mutation {
+
+    createProfile(user: ID!, fitnessLevel: Integer, gender: Integer, weight: Integer, description: String, phoneNumber: String, preferences: [Integer]): ProfileCreationResult!
+
+    updateFitnessLevel(profile: ID!, fitnessLevel: Integer!): ProfileModificationResult!
+    updateGender(profile: ID!, gender: Integer!): ProfileModificationResult!
+    updateWeight(profile: ID!, weight: Integer!): ProfileModificationResult!
+    updateDescription(profile: ID!, description: Integer!): ProfileModificationResult!
+    updatePhoneNumber(profile: ID!, phoneNumber: Integer!): ProfileModificationResult!
+
+}
+
+extend type Mutation {
+
+    createPreference()
+}

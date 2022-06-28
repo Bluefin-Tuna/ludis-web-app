@@ -26,7 +26,7 @@ type Relationship {
     id: ID!
 
     requester: User!
-    addressee: User!
+    recipient: User!
     status: Integer!
 
 }
@@ -35,6 +35,8 @@ type Event {
 
     id: ID!
 
+    name: String!
+    description: String!
     chat: ChatLog!
     location: Location
     author: User
@@ -77,6 +79,11 @@ type Profile {
     weight: Integer!
     description: String!
     phoneNumber: String!
+    eventsCreated: [Event!]
+    eventsJoined: [Event!]
+    friendRequestsCreated: [Relationship!] 
+    friendRequestsRecieved: [Relationship!] 
+    groupsJoined: [Group!]
     preferences: [Preference!]
 
 }
@@ -88,12 +95,9 @@ type User {
     username: String!
     email: String!
     name: String!
-
-    eventsCreated: [Event!]
-    eventsJoined: [Event!]
-    friendRequestsCreated: [Relationship!] 
-    friendRequestsRecieved: [Relationship!] 
-    groupsJoined: [Group!]
     profile: Profile!
+
+    isStaff: Boolean!
+    isSuperUser: Boolean!
 
 }
