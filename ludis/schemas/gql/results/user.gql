@@ -1,0 +1,33 @@
+
+type UsersResult {
+
+    success: Boolean!
+    errors: [String]
+    users: [User]
+
+}
+
+type UserResult {
+
+    success: Boolean!
+    errors: [String]
+    user: User
+
+}
+
+type UserCreationResult {
+
+    success: Boolean!
+    errors: [String]
+
+}
+
+type UserModificationResult {
+    success: Boolean!
+    errors: [String]
+}
+
+type UserDeletionResult {
+    success: Boolean!
+    errors: [String]
+}

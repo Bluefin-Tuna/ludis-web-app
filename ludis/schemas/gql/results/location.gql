@@ -1,0 +1,36 @@
+type LocationsResult {
+
+    success: Boolean!
+    errors: [String]
+    locations: [Location]
+
+}
+
+type LocationResult {
+
+    success: Boolean!
+    errors: [String]
+    location: Location
+
+}
+
+type LocationCreationResult {
+
+    success: Boolean!
+    errors: [String]
+
+}
+
+type LocationModificationResult {
+
+    success: Boolean!
+    errors: [String]
+
+}
+
+type LocationDeletionResult {
+
+    success: Boolean!
+    errors: [String]
+
+}

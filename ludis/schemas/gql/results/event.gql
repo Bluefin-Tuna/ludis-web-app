@@ -1,0 +1,36 @@
+type EventsResult {
+    
+    success: Boolean!
+    errors: [String]
+    events: [Event]
+
+}
+
+type EventResult {
+
+    success: Boolean!
+    errors: [String]
+    event: Event
+
+}
+
+type EventCreationResult {
+
+    success: Boolean!
+    errors: [String]
+
+}
+
+type EventModificationResult {
+
+    success: Boolean!
+    errors: [String]
+
+}
+
+type EventDeletionResult {
+
+    success: Boolean!
+    errors: [String]
+
+}

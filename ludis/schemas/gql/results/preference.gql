@@ -1,0 +1,39 @@
+
+
+
+type PreferencesResult {
+
+    success: Boolean!
+    errors: [String]
+    preferences: [Preference]
+
+}
+
+type PreferenceResult {
+
+    success: Boolean!
+    errors: [String]
+    preference: Preference
+
+}
+
+type PreferenceCreationResult {
+
+    success: Boolean!
+    errors: [String]
+
+}
+
+type PreferenceModificationResult {
+
+    success: Boolean!
+    errors: [String]
+
+}
+
+type PreferenceDeletionResult {
+
+    success: Boolean!
+    errors: [String]
+
+}
