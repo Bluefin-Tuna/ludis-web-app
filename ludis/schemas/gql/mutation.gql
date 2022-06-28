@@ -2,14 +2,12 @@ type Mutation {}
 
 extend type Mutation {
 
-    createUser(username: String!, password: String!, email: String!, firstName: String!, lastName: String!): UserCreationResult!
+    createUser(input: createUserInput!): UserCreationResult!
 
-    updateUsername(user: ID!, username: String!): UserModificationResult!
-    updatePassword(user: ID!, password: String!): UserModificationResult!
-    updateEmail(user: ID!, email: String!): UserModificationResult!
-    updateName(user: ID!, firstName: String!, lastName: String!): UserModificationResult!
+    updateUserInformation(input: updateUserInput!): UserModificationResult!
+    updatePassword(input: updatePasswordInput!): UserModificationResult!
 
-    deleteUser(user: ID!): UserDeletionResult!
+    deleteUser(input: deleteUserInput!): UserDeletionResult!
 
 }
 

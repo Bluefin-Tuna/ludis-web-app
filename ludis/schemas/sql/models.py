@@ -31,7 +31,7 @@ class Profiles(db.Model):
     __tablename__ = "profiles"
 
     id = db.Column(db.Integer, primary_key = True)
-    user = db.Column(db.Integer, db.ForeignKey('users.id', ondelete = "CASCADE"), nullable = False)
+    user = db.Column(db.Integer, db.ForeignKey('users.id', ondelete = "SET NULL"), nullable = False)
 
     fitness_level = db.Column(db.Integer, default = 5)
     gender = db.Column(db.Integer, default = -1)
