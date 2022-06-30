@@ -44,28 +44,12 @@ class Profiles(db.Model):
     requests_created = db.relationship("Relationships", backref = "profile", passive_deletes = True)
     requests_received = db.relationship("Relationships", backref = "profile", passive_deletes = True)
     groups = db.relationship("ProfileGroupAssociation", back_populates = "profiles", passive_deletes = True)
-    preferences = db.relationship("Preferences", backref='profile', lazy = True, passive_deletes = True)
+    activities = db.relationship("ProfileActivityAssociation", back_populates='profiles', passive_deletes = True)
     
     updated_at = db.Column(db.DateTime, default = datetime.utcnow)
 
     def __repr__(self) -> str:
         return f"<Profile {self.id}>"
-
-class Preferences(db.Model):
-
-    __tablename__ = "preferences"
-
-    id = db.Column(db.Integer, primary_key = True)
-    profile = db.Column(db.Integer, db.ForeignKey("profiles.id", ondelete = "CASCADE"), nullable = False)
-    activity = db.Column(db.Integer, db.ForeignKey("activities.id", ondelete = "CASCADE"), nullable = False)
-
-    experience = db.Column(db.Integer, default = 5)
-    user_popularity = db.Column(db.Integer, default = 0)
-
-    last_used = db.Column(db.DateTime)
-
-    def __repr__(self) -> str:
-        return f"<Preference {self.id}>"
 
 class Activities(db.Model):
 
@@ -78,7 +62,7 @@ class Activities(db.Model):
     description = db.Column(db.String(255))
     popularity = db.Column(db.Integer, default = 0)
 
-    preferences = db.relationship("Preferences", backref = "activity", lazy = True, passive_deletes = True)
+    profiles = db.relationship("ProfileActivityAssociation", back_populates = "activities", passive_deletes = True)
     locations = db.relationship("Locations", secondary = locations_activities, backref = db.backref("activities", passive_deletes = True))
     events = db.relationship("Events", backref = "activity", lazy = True, passive_deletes = True)
 

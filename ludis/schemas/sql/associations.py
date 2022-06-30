@@ -34,6 +34,19 @@ class ProfileGroupAssociation(db.Model):
     def __repr__(self) -> str:
         return f"<ProfileGroup: {self.user}, {self.group}>"
 
+class ProfileActivityAssociation(db.Model):
+
+    __tablename__ = "profiles_activities"
+
+    profile = db.Column(db.Integer, db.ForeignKey("profiles.id", ondelete = "CASCADE"), primary_key = True)
+    activity = db.Column(db.Integer, db.ForeignKey("activities.id", ondelete = "CASCADE"), primary_key = True)
+
+    experience = db.Column(db.Integer, default = 5)
+    popularity = db.Column(db.Integer, default = 0)
+
+    created_at = db.Column(db.DateTime, default = datetime.utcnow)
+    updated_at = db.Column(db.DateTime, default = datetime.utcnow)
+
 locations_activities = db.Table(
     
     "locations_activities",

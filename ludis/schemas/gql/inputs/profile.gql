@@ -1,0 +1,11 @@
+input createProfileInput {
+    user: ID!
+
+    fitnessLevel: Integer
+    gender: Integer
+    weight: Integer
+    description: String
+    phoneNumber: String
+    
+    preferences: addInitialPreferencesInput
+}

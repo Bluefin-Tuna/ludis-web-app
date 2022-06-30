@@ -65,7 +65,7 @@ type Preference {
 
     profile: Profile!
     activity: Activity!
-    experience: Integer!
+    experience: Integer
 
 }
 
