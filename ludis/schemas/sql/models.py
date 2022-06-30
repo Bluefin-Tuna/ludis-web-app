@@ -31,7 +31,7 @@ class Profiles(db.Model):
     __tablename__ = "profiles"
 
     id = db.Column(db.Integer, primary_key = True)
-    user = db.Column(db.Integer, db.ForeignKey('users.id', ondelete = "SET NULL"), nullable = False)
+    user = db.Column(db.Integer, db.ForeignKey('users.id', ondelete = "SET NULL"), nullable = True)
 
     fitness_level = db.Column(db.Integer, default = 5)
     gender = db.Column(db.Integer, default = -1)
@@ -43,8 +43,10 @@ class Profiles(db.Model):
     events_joined = db.relationship("ProfileEventAssociation", back_populates = "profiles", passive_deletes = True)
     requests_created = db.relationship("Relationships", backref = "profile", passive_deletes = True)
     requests_received = db.relationship("Relationships", backref = "profile", passive_deletes = True)
-    groups = db.relationship("ProfileGroupAssociation", back_populates = "profiles", passive_deletes = True)
-    activities = db.relationship("ProfileActivityAssociation", back_populates='profiles', passive_deletes = True)
+    groups_created = db.relationship("Groups", backref = "profile", passive_deletes = True)
+    groups_joined = db.relationship("ProfileGroupAssociation", back_populates = "profiles", passive_deletes = True)
+    activities_created = db.relationship("Activities", backref = "profile", passive_deletes = True)
+    preferences = db.relationship("ProfileActivityAssociation", back_populates='profiles', passive_deletes = True)
     
     updated_at = db.Column(db.DateTime, default = datetime.utcnow)
 
@@ -56,6 +58,7 @@ class Activities(db.Model):
     __tablename__ = "activities"
 
     id = db.Column(db.Integer, primary_key = True)
+    author = db.Column(db.Integer, db.ForeignKey("profiles.id", ondelete = "SET NULL"), nullable = True)
 
     attribute = db.Column(db.Integer, nullable = False)
     name = db.Column(db.String(255), nullable = False, unique = True)
@@ -130,6 +133,7 @@ class Groups(db.Model):
     __tablename__ = "groups"
 
     id = db.Column(db.Integer, primary_key = True)
+    creator = db.Column(db.Integer, db.ForeignKey("profiles.id", ondelete = "SET NULL"), nullable = True)
 
     name = db.Column(db.String(100))
     chat = db.Column(db.String(255))
