@@ -7,5 +7,5 @@ input createProfileInput {
     description: String
     phoneNumber: String
     
-    preferences: addInitialPreferencesInput
+    preferences: [Activity]
 }

@@ -45,7 +45,7 @@ class Profiles(db.Model):
     requests_received = db.relationship("Relationships", backref = "profile", passive_deletes = True)
     groups_created = db.relationship("Groups", backref = "profile", passive_deletes = True)
     groups_joined = db.relationship("ProfileGroupAssociation", back_populates = "profiles", passive_deletes = True)
-    activities_created = db.relationship("Activities", backref = "profile", passive_deletes = True)
+    # activities_created = db.relationship("Activities", backref = "profile", passive_deletes = True)
     preferences = db.relationship("ProfileActivityAssociation", back_populates='profiles', passive_deletes = True)
     
     updated_at = db.Column(db.DateTime, default = datetime.utcnow)
@@ -58,7 +58,7 @@ class Activities(db.Model):
     __tablename__ = "activities"
 
     id = db.Column(db.Integer, primary_key = True)
-    author = db.Column(db.Integer, db.ForeignKey("profiles.id", ondelete = "SET NULL"), nullable = True)
+    # author = db.Column(db.Integer, db.ForeignKey("profiles.id", ondelete = "SET NULL"), nullable = True)
 
     attribute = db.Column(db.Integer, nullable = False)
     name = db.Column(db.String(255), nullable = False, unique = True)
@@ -68,6 +68,8 @@ class Activities(db.Model):
     profiles = db.relationship("ProfileActivityAssociation", back_populates = "activities", passive_deletes = True)
     locations = db.relationship("Locations", secondary = locations_activities, backref = db.backref("activities", passive_deletes = True))
     events = db.relationship("Events", backref = "activity", lazy = True, passive_deletes = True)
+
+    verified = db.Column(db.Boolean, default = False)
 
     def __repr__(self) -> str:
         return f"<Activity {self.id}>"
