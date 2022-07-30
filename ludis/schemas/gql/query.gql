@@ -20,15 +20,6 @@ extend type Query {
 
 extend type Query {
 
-    getPreferences(profileID: ID!): PreferencesResult!
-    getPreferences(preferences: [ID!]!): PreferencesResult!
-
-    getPreference(id: ID!): PreferenceResult!
-
-}
-
-extend type Query {
-
     getLocations: LocationsResult!
     getLocations(activities: [ID!]!): LocationsResult!
     getLocations(activity: ID!): LocationsResult!

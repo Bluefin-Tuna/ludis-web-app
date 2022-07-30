@@ -7,5 +7,17 @@ input createProfileInput {
     description: String
     phoneNumber: String
     
-    preferences: [Activity]
+    preferences: [ID]
 }
+
+input updateProfileInput {
+    id: ID!
+
+    fitnessLevel: Integer
+    gender: Integer
+    weight: Integer
+    description: String
+    phoneNumber: String
+    preferences: JSON
+}
+

@@ -1,11 +1,23 @@
-input createProfile {
-    userID: ID!
+input createActivityInput {
 
-    fitnessLevel: Integer
-    gender: Integer
-    weight: Integer
+    type: Integer!
+    name: String!
     description: String
-    phoneNumber: String
 
-    activities: []
+}
+
+input updateActivityInput {
+    
+    id: ID!
+
+    type: Integer
+    name: String
+    description: String
+
+}
+
+input deleteActivityInput {
+
+    id: ID!
+
 }

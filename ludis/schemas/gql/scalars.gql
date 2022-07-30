@@ -1,3 +1,4 @@
 scalar DateTime
 scalar GeoLocation
 scalar ChatLog
+scalar JSON
