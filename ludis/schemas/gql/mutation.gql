@@ -31,4 +31,40 @@ extend type Mutation {
 
 extend type Mutation {
     
+    createLocation(createLocationInput!): LocationCreationResult!
+    
+    updateLocation(updateLocationInput!): LocationModificationResult!
+
+    deleteLocation(deleteLocationInput!): LocationDeletionResult!
+
+}
+
+extend type Mutation {
+
+    createEvent(createEventInput!): EventCreationResult!
+
+    updateEvent(updateEventInput!): EventModificationResult!
+
+    deleteEvent(deleteEventInput!): EventDeletionResult!
+
+}
+
+extend type Mutation {
+
+    createRelationship(createRelationshipInput!): RelationshipCreationResult!
+
+    updateRelationship(updateRelationshipInput!): RelationshipModificationResult!
+
+    deleteRelationship(deleteRelationshipInput!): RelationshipDeletionResult!
+
+}
+
+extend type Mutation {
+
+    createGroup(createGroupInput!): GroupCreationResult!
+
+    updateGroup(updateGroupInput!): GroupModificationResult!
+
+    deleteGroup(deleteGroupInput!): GroupDeletionResult!
+
 }

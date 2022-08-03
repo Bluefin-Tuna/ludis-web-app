@@ -24,3 +24,9 @@ input updateEventInput {
     endsAt: DateTime
 
 }
+
+input deleteEventInput {
+
+    id: ID!
+
+}

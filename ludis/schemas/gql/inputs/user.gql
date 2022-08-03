@@ -1,27 +1,35 @@
 input createUserInput {
+    
     username: String!
     password: String!
     email: String!
     firstName: String!
     lastName: String!
+
 }
 
 input updateUserInput {
+
     id: ID!
 
     username: String
     email: String
     firstName: String
     lastName: String
+
 }
 
 input updatePasswordInput {
+
     id: ID!
 
     oldPassword: String!
     newPassword: String!
+
 }
 
 input deleteUserInput {
+
     id: ID!
+
 }

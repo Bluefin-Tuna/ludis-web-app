@@ -85,9 +85,7 @@ class Locations(db.Model):
 
     activities = db.relationship("Activities", secondary = locations_activities, backref = db.backref("locations", passive_deletes = True))
     events = db.relationship("Events", backref='location', lazy = True, passive_deletes = True)
-
-    verified = db.Column(db.Boolean, default = False)
-
+    
     def __repr__(self) -> str:
         return f"<Location {self.id}>"
 

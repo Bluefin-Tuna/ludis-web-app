@@ -1,4 +1,5 @@
 input createProfileInput {
+    
     user: ID!
 
     fitnessLevel: Integer
@@ -8,9 +9,11 @@ input createProfileInput {
     phoneNumber: String
     
     preferences: [ID]
+
 }
 
 input updateProfileInput {
+    
     id: ID!
 
     fitnessLevel: Integer
@@ -19,5 +22,5 @@ input updateProfileInput {
     description: String
     phoneNumber: String
     preferences: JSON
-}
 
+}

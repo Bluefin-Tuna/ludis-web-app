@@ -1,0 +1,22 @@
+input createGroupInput {
+
+    creator: ID!
+    name: String!
+
+}
+
+input updateGroupInput {
+
+    id: ID!
+
+    creator: ID
+    name: String
+    users: [ID]
+
+}
+
+input deleteGroupInput {
+
+    id: ID!
+
+}
