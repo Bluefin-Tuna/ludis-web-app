@@ -1,0 +1,23 @@
+input createLocationInput {
+
+    name: String!
+    geoLocation: geoLocation!
+
+}
+
+input updateLocationInput {
+
+    id: ID!
+
+    name: String
+    geoLocation: GeoLocation
+    activities: [ID]
+    events: [ID]
+
+}
+
+input deleteLocationInput {
+
+    id: ID!
+
+}

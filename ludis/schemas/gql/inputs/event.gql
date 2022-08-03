@@ -1,0 +1,32 @@
+input createEventInput {
+
+    location: ID!
+    author: ID!
+    activity: ID!
+    name: String!
+    description: String
+    recurring: Boolean
+    startsAt: DateTime!
+    endsAt: DateTime!
+
+}
+
+input updateEventInput {
+
+    id: ID!
+
+    location: ID
+    activity: ID
+    name: String
+    description: String
+    recurring: Boolean
+    startsAt: DateTime
+    endsAt: DateTime
+
+}
+
+input deleteEventInput {
+
+    id: ID!
+
+}

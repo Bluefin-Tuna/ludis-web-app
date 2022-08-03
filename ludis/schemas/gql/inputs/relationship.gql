@@ -1,0 +1,20 @@
+input createRelationshipInput {
+
+    requester: ID!
+    recipient: ID!
+
+}
+
+input updateRelationshipInput {
+
+    id: ID!
+
+    status: Integer
+
+}
+
+input deleteRelationshipInput {
+
+    id: ID!
+
+}
